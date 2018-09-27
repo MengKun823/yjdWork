@@ -1,0 +1,14 @@
+<view class="remindBox" >
+  <!-- 提醒 -->
+  <view class='remindText'>给勤奋的自己定一个提醒时间</view>
+  <view class="remindCell">
+    <view class="remindLabel">提醒</view>
+    <!-- 时间点击 -->
+    <form bindsubmit='formSubmitBtn' report-submit="true">
+      <picker class='remindBtn' mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange" >
+        <view class="remindInput">{{time}}</view>
+      </picker>
+      <!-- <button form-type='submit' class='inputTime'></button>  -->
+    </form>
+  </view>
+</view>

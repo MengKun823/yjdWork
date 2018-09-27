@@ -1,0 +1,75 @@
+<!--mine.wxml-->
+<form bindsubmit='AnswerTap' report-submit='true' class='mineMask' wx:if="{{showMask}}">
+  <button form-type='submit' class='mineMask-btn' bindtap='showMask'></button>
+</form>
+<form bindsubmit='AnswerTap' report-submit='true'>
+  <view class="mine">
+    <view class="mineTop-date">
+      <view class="mineYearMonth">
+        <!-- 获取formId -->
+        <button class='mineMask-btn' id='mineTopId' form-type='submit'></button>
+        <view class='mineYear'>{{cur_year || "--"}}年</view>
+        <view class='mineMonth'>{{cur_month || "--"}}月</view>
+      </view>
+      <view class="haveTheAnswer">
+        <!-- 获取formId -->
+        <button class='mineMask-btn' id='ans_day_btn' form-type='submit'></button>      
+        <view>已经完成</view>
+        <view class='answerDays'>{{total + "天"}}</view>
+      </view>
+      <view class="theSetUpButton">
+        <button class='mineMask-btn' id='setup_btn' bindtap='btnRemind' form-type='submit'></button>      
+        <image src='../../image/remind.png' class='theSetUpBut' />
+        <view class='theSetUp'>设置</view>
+        <image src='../../image/dot.svg' class='dot' bindtap='btnRemind' wx:if="{{mine_dot == ''}}"></image>
+      </view> 
+    </view>
+    <!-- 日历组件 -->
+    <view class='calendarWrap'>
+      <view class="top-handle fs28 box box-lr box-align-center box-pack-center">
+        <view class="prev box box-rl" bindtap="handleCalendar" data-handle="prev">
+          <button class='mineMask-btn handle_prev' form-type='submit'></button>
+          <view class="prev-handle box box-lr box-align-center box-pack-center">〈</view>
+        </view>
+        <!-- bindtap="chooseYearAndMonth" -->
+        <view class="date-area box box-lr box-align-center box-pack-center">{{cur_month || "--"}} 月</view> 
+        <view class="next box box-lr" bindtap="handleCalendar" data-handle="next">
+          <button class='mineMask-btn handle_prev' form-type='submit'></button>
+          <view class="next-handle box box-lr box-align-center box-pack-center">〉</view>
+        </view>
+      </view>
+      <view class="flex box box-tb box-align-center">
+        <view class="calendar box box-tb">
+          <view class="weeks box box-lr box-pack-center box-align-center">
+              <view class="flex week fs28" wx:for="{{weeks_ch}}" wx:key="{{index}}" data-idx="{{index}}">{{item}}</view>
+          </view>
+          <view class="days box box-lr box-wrap">
+              <view wx:if="{{hasEmptyGrid}}" class="grid white-color box box-align-center box-pack-center" wx:for="{{empytGrids}}" wx:key="{{index}}" data-idx="{{index}}">
+              </view>
+              <view class="grid white-color box box-align-center box-pack-center" wx:for="{{days}}" wx:key="{{index}}" data-idx="{{index}}">
+              <form bindsubmit='AnswerTap' report-submit='true' class='position-r'>
+                  <button data-days='{{item.day}}' class='AnswerTap' form-type='submit' bindtap='bindAnswerTap' wx:if="{{item.showShare == true}}"></button>
+                  <view class="day {{item.isToday ? 'red-bg' : ''}} {{item.noAnswer ? 'bold-font' : ''}} {{item.answered ? 'blue-bg' : ''}} box box-align-center box-pack-center">{{item.day}}</view>
+              </form>
+              </view>
+          </view>
+        </view>
+      </view>
+      <!-- 设置点击选择年月 -->
+      <view wx:if="{{showPicker}}" class="pickerOf">
+        <view class="picker-btns box box-lr box-pack-between box-align-center">
+          <view class="picker-btn picker-cancel" data-type="cancel" bindtap="tapPickerBtn">取消</view>
+          <view class="picker-btn picker-confirm" data-type="confirm" bindtap="tapPickerBtn">确定</view>
+        </view>
+        <picker-view class="flex" indicator-style="height: 50px;" style="width: 100%; height: 150px;" value="{{picker_value}}" bindchange="pickerChange">
+          <picker-view-column>
+            <view class="picker-view" wx:for="{{picker_year}}" style="line-height: 50px">{{item}}年</view>
+          </picker-view-column>
+          <picker-view-column>
+            <view class="picker-view" wx:for="{{picker_month}}" style="line-height: 50px">{{item}}月</view>
+          </picker-view-column>
+        </picker-view>
+      </view>  
+    </view>
+  </view>
+</form>

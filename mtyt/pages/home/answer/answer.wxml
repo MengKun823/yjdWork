@@ -1,0 +1,62 @@
+<!--pages/home/answer/answer.wxml-->
+<form class='showPosters' bindsubmit='answerSub' report-submit='true' wx:if="{{showPosters == true}}">
+  <image class='hiddenPosters' src='../../../image/postersErr.svg' bindtap='hiddenPosters'></image>
+  <image class='postersImg' src='{{shareUrl}}'></image>
+  <button form-type='submit' class='postersBtn' bindtap='saveImg'>保存相册后分享</button>
+</form>
+<view class='answer'>
+  <!-- 答题题目部分 -->
+  <block>
+    <image class="answerTopBg" src="{{answerTopBg}}"></image>  
+    <view class="answerTop-first">
+      <!-- 返回首页 -->
+      <form bindsubmit='answerSub' report-submit='true'>
+        <view class='returnHome' bindtap="rHome"><button class='return_home_btn' form-type='submit'></button><image class="returnHome-img" src="{{returnHomeImg}}"></image>{{returnHome}}</view>
+      </form>
+      <view class="answerTop-date">
+        <view class="answerTop-ymd answerTop-year">{{year}}</view>
+        <view class="answerTop-ymd answerTop-month">{{month}}</view>
+        <view class="answerTop-ymd answerTop-dat">{{day}}</view>
+      </view>
+      <text class='questionText'>{{questionText}}</text>
+      <text class='questionHearten'>{{questionHearten}}</text>
+      <view class='questionTorF' wx:if='{{hasDone==0}}'><image class='answer_N' src='../../../image/answer_N.png'></image>未答题</view>
+      <view class='questionTorF questionT' wx:else><image class='answer_Y' src='../../../image/answer_Y.png'></image>已答题</view>
+    </view>
+  </block>
+  <!-- 正题 -->
+  <block>
+    <text class='choose'>{{questionTypeTit}}</text>
+    <text class='topic'>{{context}}</text>
+    <!-- 正题选项部分 -->
+    <form bindsubmit='answerSub' report-submit='true' class='ansOptionBg' wx:if = "{{hasDone == 0}}">
+      <view class='ansOption' id='a' bindtap='optionSelect'><view class='optionText {{optionState.a ? "optionTextBg" : ""}}'>A</view><view class='ansText'>{{A}}</view></view>
+      <view class='ansOption' id='b' bindtap='optionSelect'><view class='optionText {{optionState.b ? "optionTextBg" : ""}}'>B</view><view class='ansText'>{{B}}</view></view>
+      <view class='ansOption' id='c' bindtap='optionSelect'><view class='optionText {{optionState.c ? "optionTextBg" : ""}}'>C</view><view class='ansText'>{{C}}</view></view>
+      <view class='ansOption' id='d' bindtap='optionSelect'><view class='optionText {{optionState.d ? "optionTextBg" : ""}}'>D</view><view class='ansText'>{{D}}</view></view>
+    </form>
+    <view class='ansOptionBg' wx:else>
+      <view class='ansOption' id='a'><view class='optionText {{correctOption.a == 1 ? "optionTextBg" : ""}} {{correctOption.a == 2 ? "optionTextErrBg" : ""}} {{correctOption.a == 3 ? "optionTextBox" : ""}}'>A</view><view class='ansText'>{{A}}</view></view>
+      <view class='ansOption' id='b'><view class='optionText {{correctOption.b == 1 ? "optionTextBg" : ""}} {{correctOption.b == 2 ? "optionTextErrBg" : ""}} {{correctOption.b == 3 ? "optionTextBox" : ""}}'>B</view><view class='ansText'>{{B}}</view></view>
+      <view class='ansOption' id='c'><view class='optionText {{correctOption.c == 1 ? "optionTextBg" : ""}} {{correctOption.c == 2 ? "optionTextErrBg" : ""}} {{correctOption.c ==3 ? "optionTextBox" : ""}}'>C</view><view class='ansText'>{{C}}</view></view>
+      <view class='ansOption' id='d'><view class='optionText {{correctOption.d == 1 ? "optionTextBg" : ""}} {{correctOption.d == 2 ? "optionTextErrBg" : ""}} {{correctOption.d == 3? "optionTextBox" : ""}}'>D</view><view class='ansText'>{{D}}</view></view>
+    </view>
+    <!-- 提交按钮 -->
+    <view class='putBg' wx:if="{{hasDone == 0}}">
+      <form bindsubmit='answerSub' report-submit='true'>
+        <button class='putIn' form-type='submit' type='prinary' hover-class='button-hover' disabled='{{submiteBtnState}}' bindtap='btnQuestion'>提交</button>
+      </form>
+    </view>
+    <!-- 答题详解 -->
+    <view class='analysis' wx:else>
+      <view class='putBg'>
+        <view class='analysis_bg'><text class='analysi_class'>正确答案</text><text class='analysi_con'>{{questionTure}}</text></view>
+        <view class='analysis_bg'><text class='analysi_class'>全站正确率</text><text class='analysi_con'>{{correctRate+'%'}}</text></view>
+        <view class='analysis_bg'><text class='analysi_class'>易错项</text><text class='analysi_con'>{{fallibility}}</text></view>
+        <view class='analysis_bg' bindtap='btnShare'><text class='analysi_class help'>分享给考友</text><image class='analysi_icon' src='../../../image/btn_share.png'></image></view>
+      </view>
+      <view class='analysisText'>答案分解</view>
+      <view class='analysisBox'><view class='analysisValue'>{{explanation}}</view></view>
+    </view>
+  </block>
+</view>

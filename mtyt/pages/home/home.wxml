@@ -1,0 +1,43 @@
+<!--index.wxml-->
+ <form bindsubmit='homeSubmit' report-submit='true' class='homeMask' wx:if="{{showMask}}">
+  <button form-type='submit' class='homeMask-btn' bindtap='showMask'></button>
+</form> 
+<view class="container">
+  <view class="userinfo"><!-- 当天答题显示 -->
+        <!-- <view class='share' wx:if="{{!hasUserInfo && canIUse}}" > 获取头像昵称 </view>  -->
+    <block>
+      <image class="question-bg" src="{{questionBg}}"></image>
+      <form class='question-form' report-submit='true' bindsubmit='homeSubmit'>
+        <button class='homeTap' form-type='submit' bindtap='bindAnswerTap'></button>
+        <view class="question-first">
+          <view class="question-date">
+            <view class="question-ymd question-year">{{year}}</view>
+            <view class="question-ymd question-month">{{month}}</view>
+            <view class="question-ymd question-dat">{{day}}</view>
+          </view>
+          <view class='question-text'>{{questionText}}</view>
+          <view class='question-num'>{{questionNum}}</view>
+          <view class="Go-to-answer accomplishT" wx:if="{{pastIforNot==1}}">
+            <image class='accomplish' src='../../image/have_the_answer.png'></image>
+            <text class='accomplishText'>已答题</text>
+          </view>
+          <button form-type='submit' bindtap="bindAnswerTap" class="Go-to-answer" wx:else>{{questionToAnswer}}</button>
+        </view>
+      </form>
+    </block>
+  </view>
+  <form bindsubmit='homeSubmit' report-submit='true' class="pastrecords"><!-- 历史答题显示 -->
+    <view wx:for="{{pastRecords}}" wx:key="{{item.id}}" class="past-records {{index}}">
+      <button class='past-records-btn' form-type='submit' bindtap="bindAnswerTap2"  data-days='{{item.show_day}}'></button> 
+      <text class="pastTopic">{{item.title}}<text class="pastDate">{{item.show_day}}</text></text>
+      <image src='{{item.picture_url}}' class="pastImage"></image>
+      <text class="pastAnswerPeople">{{item.user_answer_num +"人已答题"}}</text>
+      <text class='pastIforNot' wx:if="{{item.has_done==1}}">已完成</text>
+      <text class='pastIforNot pastNot' wx:else>未完成</text>
+      <view class='pastRemind' wx:if="{{item.has_done==1}}">{{"查看详情"}}<image class='chakan' src='../../image/chakan.png'></image></view>
+      <view class='pastRemind' wx:else>{{"去答题"}}<image class='chakan' src='../../image/chakan.png'></image></view>
+      <view class='fenge'></view>
+    </view>
+  </form>
+  <view class='more' bindtap='bindMineTap'>查看更多</view><!-- 查看更多 -->
+</view>
