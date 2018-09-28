@@ -34,16 +34,16 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle"  data-target="#navbar-menu"><!--data-toggle="collapse"-->
-				<span class="sr-only">切换导航</span>
+			<div type="button" 	 style="width: 50px; height: 50px; background: red;" id="celan">
+				<!--<span class="sr-only">切换导航</span>-->
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
-			</button>
+			</div>
 			<a href="#" class="navbar-brand nav-title">益简单开放平台</a>
 		</div>
-		<div class="collapse navbar-collapse" id="navbar-menu">
+		<!--<div class="collapse navbar-collapse nav-pills" id="navbar-menu">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="cative">
 					<a href="#">11111</a>
@@ -52,11 +52,179 @@
 					<a href="#">22222</a>
 				</li>
 			</ul>
-		</div>
+		</div>-->
+		<div id="accordion"style="float: left; width: 20%;">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" 
+                href="#collapseOne">
+                点击我
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+                Nihil anim keffiyeh he
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" 
+                href="#collapseTwo">
+                点击我进
+            </a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+        <div class="panel-body">
+            Nihil anim 
+        </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" 
+                href="#collapseThree">
+                点击我进
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse">
+            <div class="panel-body" style="width: 20px;">
+                Nihil anim
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+		<div id="accordions"style="float: left; width: 10%; display: none;">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a  data-parent="#accordions" 
+                href="#collapseOne">
+                点击我
+                </a>
+            </h4>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a  data-parent="#accordions" 
+                href="#collapseTwo">
+                点击我进
+            </a>
+            </h4>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-parent="#accordions" 
+                href="#collapseThree">
+                点击我进
+                </a>
+            </h4>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div id="qwe" style="float: left; width: 80%;">
+	<ul style="list-style: none;">
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		<li>sddddddddddddddddddddddddddddddddddd</li>
+		
+	</ul>
+</div>
+
+
+
+
+
+
+
 	</div>
 </nav>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="bootstrap-3.3.7/dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
-
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		    var trigger = $('.nav-btn'),
+		        isClosed = false;
+		    trigger.click(function() {
+		        hamburger_cross();
+		    });
+		    function hamburger_cross() {
+		        if (isClosed == true) {
+//		            trigger.removeClass('show-nav');
+//		            trigger.addClass('hide-nav');
+		            isClosed = false;
+		        } else {
+//		            trigger.removeClass('hide-nav');
+//		            trigger.addClass('show-nav');
+		            isClosed = true;
+		        }
+		    };
+		    var flag = false
+		    $('#celan').click(function(){
+		    	console.log(flag)
+		    	if (!flag){
+		    		
+		    		$("#accordion").hide()
+		    		$('#accordions').show()
+		    		$("#qwe").css("width","90%")
+		    		
+		    		console.log(flag)
+		    		flag = true
+		    	} else {
+		    		$("#qwe").css("width","80%")
+		    		$("#accordion").show()
+		    		$('#accordions').hide()
+		    		flag = false
+		    		
+		    	}
+		    })
+		    $('#accordions').click(function(){
+		    	$("#qwe").css("width","80%")
+		    		$("#accordion").show()
+		    		$('#accordions').hide()
+		    		flag = false
+		    })
+		    $('[data-toggle="offcanvas"]').click(function() {
+		        $('#mobile-menu').toggleClass('hide-nav');
+		    });
+		});
+</script>
 </html>
